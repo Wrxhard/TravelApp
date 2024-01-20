@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FTravel</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_title">Welcome back</string>
+    <string name="welcome_content">Enjoy your trip at Ho Chi Minh</string>
+    <string name="search_bar_hint">Search place or food...</string>
+    <string name="near_you">Near you</string>
+    <string name="food">Food</string>
+</resources>
