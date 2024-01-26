@@ -6,7 +6,6 @@ import com.wrxhard.ftravel.data.remote.RemoteRepo
 import com.wrxhard.ftravel.data.remote.auth_api.AuthRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 
-@HiltViewModel
 class MainActivityViewModel constructor(
     private val remoteRepo: RemoteRepo,
     private val localRepo: LocalRepo

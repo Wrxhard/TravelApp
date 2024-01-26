@@ -44,6 +44,18 @@
         >
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/qr_scan_btn"
+        app:elevation="10dp"
+        android:layout_marginBottom="-16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="#ffffff"
+        android:src="@drawable/ic_qr"
+        ></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
 

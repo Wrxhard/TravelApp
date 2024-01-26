@@ -38,7 +38,7 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:text="Nha Tho Duc Ba"
                 android:textSize="@dimen/_10ssp"
-                android:textColor="000000"
+                android:textColor="#000000"
                 android:maxEms="6"
                 android:singleLine="false"
                 android:textStyle="bold"
