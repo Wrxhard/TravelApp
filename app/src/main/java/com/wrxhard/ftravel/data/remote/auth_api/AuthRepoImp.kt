@@ -18,12 +18,12 @@ class AuthRepoImp @Inject constructor(
             }
             else
             {
-                Resource.Error(respone.message() ?:"An error occured")
+                Resource.Error(respone.message() ?:"Login Failed An error occured")
             }
 
         }catch (e:Exception)
         {
-            Resource.Error(e.message ?: "An error occured")
+            Resource.Error(e.message ?: "Login Failed An error occured")
         }
     }
 
@@ -42,7 +42,7 @@ class AuthRepoImp @Inject constructor(
 
         }catch (e:Exception)
         {
-            Resource.Error(e.message ?: "An error occured")
+            Resource.Error(e.message ?: "Register Failed An error occured")
         }
     }
 
@@ -61,7 +61,7 @@ class AuthRepoImp @Inject constructor(
 
         }catch (e:Exception)
         {
-            Resource.Error(e.message ?: "An error occured")
+            Resource.Error(e.message ?: "Login With Google Failed An error occured")
         }
     }
 

@@ -11,10 +11,10 @@ data class Location(
     @PrimaryKey
     @SerializedName("id")
     val id: String,
-    @SerializedName("image_url")
-    val image_url: String,
     @SerializedName("name")
     val name: String,
+    @SerializedName("image_url")
+    val image_url: String,
     @SerializedName("address")
     val address: String,
 )

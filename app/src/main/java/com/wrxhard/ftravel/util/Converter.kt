@@ -10,6 +10,7 @@ class Converter {
         list.forEach {
             res+=it.id + ","
             res+=it.name+","
+            res+=it.image_url+","
             res+=it.address+","
         }
         if (res.endsWith(","))
@@ -23,7 +24,7 @@ class Converter {
         val list= mutableListOf<Location>()
         locations.split(",").forEach {
             val location = it.split(",")
-            list.add(Location(location[0],location[1],location[2]))
+            list.add(Location(location[0],location[1],location[2],location[3]))
         }
         return list
     }
