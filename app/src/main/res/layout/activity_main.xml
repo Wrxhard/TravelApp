@@ -25,9 +25,9 @@
 
         android:background="@drawable/bottom_nav_bg"
 
-        android:padding="@dimen/_2sdp"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/_240sdp"
         android:layout_height="@dimen/_44sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,10 +36,10 @@
         app:itemIconSize="@dimen/_25ssp"
         app:itemTextColor="@color/white"
         app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
-        app:itemRippleColor="#F0F5F9"
+        app:itemRippleColor="#CCCCCC"
 
         style="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface"
-        app:labelVisibilityMode="selected"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_nav_menu"
         >
 

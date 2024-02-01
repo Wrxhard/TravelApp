@@ -19,13 +19,17 @@ class ItemAdapter(val listItem: List<Item<*>>, val onClick:(Item<*>)->Unit): Rec
            when(Item.data){
                is Food ->{
                    val food=Item.data
-                   val desc = view.findViewById<TextView>(R.id.item_desc)
+                   val desc = view.findViewById<TextView>(R.id.card_desc)
+                   val location = view.findViewById<TextView>(R.id.card_location)
                    desc.text = food.name
+                   location.text = food.locations[0].address
                }
                is Location -> {
-                   val location=Item.data
-                   val desc = view.findViewById<TextView>(R.id.item_desc)
+                   val location = Item.data
+                   val desc = view.findViewById<TextView>(R.id.card_desc)
+                   val address = view.findViewById<TextView>(R.id.card_location)
                    desc.text = location.name
+                   address.text = location.address
                }
                else -> {
                    Log.e("ItemAdapter", "Unknown Item Type")
