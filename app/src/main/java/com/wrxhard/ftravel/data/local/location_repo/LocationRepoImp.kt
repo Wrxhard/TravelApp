@@ -1,4 +1,4 @@
-package com.wrxhard.ftravel.data.local.local_repo.location_repo
+package com.wrxhard.ftravel.data.local.location_repo
 
 import com.wrxhard.ftravel.data.local.dao.LocationDAO
 import com.wrxhard.ftravel.model.base_model.Location

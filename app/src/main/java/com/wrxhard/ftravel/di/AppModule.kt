@@ -5,10 +5,10 @@ import androidx.room.Room
 import com.google.gson.GsonBuilder
 import com.wrxhard.ftravel.data.local.DatabaseIns
 import retrofit2.converter.gson.GsonConverterFactory
-import com.wrxhard.ftravel.data.local.local_repo.food_repo.FoodRepo
-import com.wrxhard.ftravel.data.local.local_repo.food_repo.FoodRepoImp
-import com.wrxhard.ftravel.data.local.local_repo.location_repo.LocationRepo
-import com.wrxhard.ftravel.data.local.local_repo.location_repo.LocationRepoImp
+import com.wrxhard.ftravel.data.local.food_repo.FoodRepo
+import com.wrxhard.ftravel.data.local.food_repo.FoodRepoImp
+import com.wrxhard.ftravel.data.local.location_repo.LocationRepo
+import com.wrxhard.ftravel.data.local.location_repo.LocationRepoImp
 import com.wrxhard.ftravel.data.remote.auth_api.AuthRepo
 import com.wrxhard.ftravel.data.remote.auth_api.AuthRepoImp
 import com.wrxhard.ftravel.data.remote.auth_api.AuthService

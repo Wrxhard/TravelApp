@@ -1,4 +1,4 @@
-package com.wrxhard.ftravel.data.local.local_repo.food_repo
+package com.wrxhard.ftravel.data.local.food_repo
 
 import com.wrxhard.ftravel.model.base_model.Food
 import kotlinx.coroutines.flow.Flow
