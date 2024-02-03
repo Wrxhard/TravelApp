@@ -18,6 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityMainBinding
+import com.wrxhard.ftravel.util.SystemHelper
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         //bindingview
         binding = ActivityMainBinding.inflate(layoutInflater)
         //hideSystemBar
-        hideSystem()
+        SystemHelper.hideSystem(this)
         //Find and set Navigation controller
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
@@ -42,23 +43,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    //hide systembar
-    @RequiresApi(Build.VERSION_CODES.R)
-    private fun hideSystem(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            window.attributes.layoutInDisplayCutoutMode = WindowManager
-                .LayoutParams
-                .LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-        }
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        val windowInsetsController =
-            WindowCompat.getInsetsController(window, window.decorView)
-
-        windowInsetsController.systemBarsBehavior =
-            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
-
-    }
 
     //Set up bottom navigation
     private fun setupBottomNav(navController: NavController, bottomNavigationView: BottomNavigationView)
