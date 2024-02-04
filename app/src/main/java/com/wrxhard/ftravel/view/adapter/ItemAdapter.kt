@@ -46,8 +46,8 @@ class ItemAdapter(val listItem: List<Item<*>>, val onClick:(Item<*>)->Unit): Rec
     }
 
     override fun onBindViewHolder(holder: ItemMyViewHolder, position: Int) {
-        val film=listItem[position]
-        holder.bind(film,onClick)
+        val item=listItem[position]
+        holder.bind(item,onClick)
 
     }
 

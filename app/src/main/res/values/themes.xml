@@ -3,14 +3,7 @@
     <style name="Base.Theme.FTravel" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">#FF555B</item>
     </style>
 
-    <style name="Theme.FTravel" parent="Base.Theme.FTravel" />
-
-    <!-- Base application theme. -->
-    <style name="Theme.Fab_Bottom_app_bar" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#0F9D58</item>
-        <item name="colorPrimaryVariant">#0F9D58</item>
-        <item name="colorOnPrimary">#000</item>
-    </style>
 </resources>

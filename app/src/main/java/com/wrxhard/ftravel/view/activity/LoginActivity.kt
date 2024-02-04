@@ -36,7 +36,6 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.passwordTxtfield.text.toString()
             authViewModel.login(username, password)
         }
-        watchState()
         setContentView(binding.root)
     }
     private fun watchState(){

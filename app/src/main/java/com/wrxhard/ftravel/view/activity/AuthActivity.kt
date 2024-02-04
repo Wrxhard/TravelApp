@@ -28,6 +28,7 @@ class AuthActivity : AppCompatActivity() {
         binding.LoginBtn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+
         }
         binding.SignUpBtn.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)

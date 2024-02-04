@@ -13,9 +13,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import javax.inject.Inject
 
 @HiltViewModel
-class AuthActivityViewModel constructor(
+class AuthActivityViewModel @Inject constructor(
     private val remoteRepo: RemoteRepo,
     private val dispatcher: DispatcherProvider
 ): ViewModel() {
