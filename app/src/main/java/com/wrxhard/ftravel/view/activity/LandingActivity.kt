@@ -2,11 +2,13 @@ package com.wrxhard.ftravel.view.activity
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -15,12 +17,13 @@ import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityLandingBinding
 import com.wrxhard.ftravel.util.SystemHelper
 import com.wrxhard.ftravel.view.adapter.LandingAdapter
+import eightbitlab.com.blurview.RenderScriptBlur
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+
 
 class LandingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLandingBinding
@@ -40,8 +43,10 @@ class LandingActivity : AppCompatActivity() {
             val intent = Intent(this, AuthActivity::class.java)
             startActivity(intent)
         }
+        SystemHelper.blurView(this, binding.root, binding.blurView, 10f)
         setContentView(binding.root)
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -61,11 +66,13 @@ class LandingActivity : AppCompatActivity() {
         val dotsimg = Array(bgs.size){
             ImageView(this)
         }
+
         dotsimg.forEach {
             it.setImageResource(R.drawable.dot_unselected)
             slidedot.addView(it,params)
         }
         dotsimg[0].setImageResource(R.drawable.dot_selected)
+
         pageListener = object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 dotsimg.mapIndexed { index, imageView ->
@@ -78,7 +85,9 @@ class LandingActivity : AppCompatActivity() {
                 super.onPageSelected(position)
             }
         }
+
         binding.viewPager.registerOnPageChangeCallback(pageListener)
+
         lifecycleScope.launch(Dispatchers.IO) {
             repeatOnLifecycle(Lifecycle.State.CREATED)
             {

@@ -120,6 +120,11 @@ dependencies {
     val glide_version="4.12.0"
     implementation("com.github.bumptech.glide:glide:$glide_version")
 
+    implementation("com.github.Dimezis:BlurView:version-2.0.3")
+
+
+
+
 
 
 

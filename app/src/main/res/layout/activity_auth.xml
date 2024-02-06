@@ -62,7 +62,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:paddingTop="@dimen/_4sdp"
-                            android:text="Sign in-up to enjoy the best managing experience"
+                            android:text="Sign in-up to enjoy the best experience"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_10ssp"
                             android:textStyle="normal"

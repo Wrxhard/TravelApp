@@ -29,16 +29,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(layoutInflater)
-        val list  = listOf(
-            Item(Location("1","","Nha Tho Duc Ba","Ho Chi Minh")),
-            Item(Location("2","","Nha Tho Duc Ba 2","Ha Noi"))
-        )
-        val adapter = ItemAdapter(list,{
-
-        })
-        binding.cardList.adapter = adapter
-        binding.cardList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
         return binding.root
     }
 

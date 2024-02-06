@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         //hideSystemBar
         SystemHelper.hideSystem(this)
         //Find and set Navigation controller
+        /*
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
         val navController = navHostFragment?.navController
@@ -39,12 +40,13 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNav.selectedItemId = R.id.home_nav_graph
             //setup bottom nav
             setupBottomNav(it, binding.bottomNav)
-        }
+        }*/
         setContentView(binding.root)
     }
 
 
     //Set up bottom navigation
+    //Deprecated
     private fun setupBottomNav(navController: NavController, bottomNavigationView: BottomNavigationView)
     {
 

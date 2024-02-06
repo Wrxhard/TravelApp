@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/adventure_map"
         android:layout_marginTop="@dimen/_50sdp"
-        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginStart="@dimen/_52sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,18 +73,21 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/username_txtfield"
-                app:layout_constraintStart_toEndOf="@id/user_icon"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
-                android:hint="Full name"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/mulishlight"
+                android:inputType="text"
+                android:hint="Full name"
+                android:textColor="@color/white"
+                android:textAlignment="textStart"
                 android:textColorHint="@color/white"
                 android:textSize="@dimen/_13ssp"
-                android:textAlignment="textStart"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintEnd_toStartOf="@+id/user_icon"
+                app:layout_constraintStart_toEndOf="@id/user_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
@@ -118,18 +121,21 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_txtfield"
-                app:layout_constraintStart_toEndOf="@id/email_icon"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
-                android:hint="Valid email"
+                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/mulishlight"
+                android:hint="Valid email"
+                android:textColor="@color/white"
+                android:textAlignment="textStart"
                 android:textColorHint="@color/white"
                 android:textSize="@dimen/_13ssp"
-                android:textAlignment="textStart"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintEnd_toStartOf="@+id/email_icon"
+                app:layout_constraintStart_toEndOf="@id/email_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
@@ -163,18 +169,21 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/phone_txtfield"
-                app:layout_constraintStart_toEndOf="@id/phone_icon"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
-                android:hint="Phone number"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/mulishlight"
+                android:inputType="phone"
+                android:hint="Phone number"
+                android:textColor="@color/white"
+                android:textAlignment="textStart"
                 android:textColorHint="@color/white"
                 android:textSize="@dimen/_13ssp"
-                android:textAlignment="textStart"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintEnd_toStartOf="@+id/phone_icon"
+                app:layout_constraintStart_toEndOf="@id/phone_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
@@ -208,22 +217,26 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_txtfield"
-                app:layout_constraintStart_toEndOf="@id/password_icon"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
-                android:hint="Strong password"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/mulishlight"
+                android:inputType="textPassword"
+                android:hint="Strong password"
+                android:textColor="@color/white"
+                android:textAlignment="textStart"
                 android:textColorHint="@color/white"
                 android:textSize="@dimen/_13ssp"
-                android:textAlignment="textStart"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintEnd_toStartOf="@+id/password_icon"
+                app:layout_constraintStart_toEndOf="@id/password_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="@dimen/_2sdp"
+        android:id="@+id/checkbox_layout"
+        android:layout_marginTop="@dimen/_4sdp"
         android:layout_marginHorizontal="@dimen/_26sdp"
         app:layout_constraintStart_toStartOf="@id/username_field"
         app:layout_constraintTop_toBottomOf="@id/password_field"
@@ -234,7 +247,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:buttonTint="@color/white"
+            app:buttonTint="#CBCBCB"
+            app:buttonIconTint="#000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <com.google.android.material.textview.MaterialTextView
@@ -246,9 +260,68 @@
             app:layout_constraintTop_toTopOf="@id/checkbox"
             app:layout_constraintBottom_toBottomOf="@id/checkbox"
             app:layout_constraintStart_toEndOf="@id/checkbox"
-            android:text="By checking the box you agree to our Terms and Conditions."
+            android:text="By checking the box you agree to our "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/TermsOfService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terms of Service"
+            android:fontFamily="@font/mulishlight"
+            android:textSize="@dimen/_8ssp"
+            android:textColor="#FF555B"
+            app:layout_constraintTop_toTopOf="@id/checkbox_txt"
+            app:layout_constraintStart_toEndOf="@id/checkbox_txt"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/next_button"
+        app:cornerRadius="@dimen/_6sdp"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"
+        android:text="Next"
+        android:textSize="@dimen/_13ssp"
+        android:fontFamily="@font/mulish_semi_bold"
+        android:layout_marginHorizontal="@dimen/_28sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checkbox_layout"
+        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginHorizontal="@dimen/_26sdp"
+        app:layout_constraintStart_toStartOf="@id/username_field"
+        app:layout_constraintTop_toBottomOf="@id/next_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/already_member"
+            android:fontFamily="@font/mulishlight"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/white"
+            android:layout_marginEnd="@dimen/_28sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Already a member? "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Login_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log in"
+            android:fontFamily="@font/mulishlight"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="#FF555B"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/already_member"
+            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

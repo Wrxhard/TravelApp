@@ -14,7 +14,9 @@ import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityAuthBinding
 import com.wrxhard.ftravel.util.SystemHelper
 import com.wrxhard.ftravel.view_model.activity.AuthActivityViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAuthBinding

@@ -15,9 +15,11 @@ import com.wrxhard.ftravel.databinding.ActivityLoginBinding
 import com.wrxhard.ftravel.util.Event
 import com.wrxhard.ftravel.util.SystemHelper
 import com.wrxhard.ftravel.view_model.activity.AuthActivityViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
@@ -28,14 +30,16 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         SystemHelper.hideSystem(this)
         binding = ActivityLoginBinding.inflate(layoutInflater)
-        binding.backBtn.setOnClickListener {
-            finish()
-        }
-        binding.SignInBtn.setOnClickListener {
-            val username = binding.usernameTxtfield.text.toString()
+        binding.nextButton.setOnClickListener {
+            val username = binding.emailTxtfield.text.toString()
             val password = binding.passwordTxtfield.text.toString()
             authViewModel.login(username, password)
         }
+        binding.RegisterBtn.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
+        watchState()
         setContentView(binding.root)
     }
     private fun watchState(){
