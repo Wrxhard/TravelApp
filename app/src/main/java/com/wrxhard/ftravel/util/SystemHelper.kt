@@ -1,7 +1,7 @@
 package com.wrxhard.ftravel.util
 
 import android.os.Build
-import android.view.View
+import android.renderscript.RenderScript
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
@@ -10,6 +10,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import eightbitlab.com.blurview.BlurView
+import eightbitlab.com.blurview.RenderEffectBlur
 import eightbitlab.com.blurview.RenderScriptBlur
 
 object SystemHelper {
@@ -30,12 +31,23 @@ object SystemHelper {
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
     }
 
-    fun blurView(activity: AppCompatActivity,rootView: ViewGroup, blurView: BlurView, radius: Float){
+    fun blurView(activity: AppCompatActivity, rootView: ViewGroup, blurView: BlurView, radius: Float){
         val window = activity.window
         val decorView = window.decorView
         val windowBackground = decorView.background
-        blurView.setupWith(rootView,  RenderScriptBlur(activity)) // or RenderEffectBlur
-            .setFrameClearDrawable(windowBackground) // Optional
-            .setBlurRadius(radius)
+        when(Build.VERSION.SDK_INT)
+        {
+            Build.VERSION_CODES.S -> {
+                blurView.setupWith(rootView,  RenderEffectBlur()) // or RenderEffectBlur
+                    .setFrameClearDrawable(windowBackground) // Optional
+                    .setBlurRadius(radius)
+            }
+            else -> {
+                blurView.setupWith(rootView,  RenderScriptBlur(activity)) // or RenderEffectBlur
+                    .setFrameClearDrawable(windowBackground) // Optional
+                    .setBlurRadius(radius)
+
+            }
+        }
     }
 }

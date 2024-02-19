@@ -3,8 +3,6 @@ package com.wrxhard.ftravel.view.activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
@@ -17,7 +15,6 @@ import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityLandingBinding
 import com.wrxhard.ftravel.util.SystemHelper
 import com.wrxhard.ftravel.view.adapter.LandingAdapter
-import eightbitlab.com.blurview.RenderScriptBlur
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -38,7 +35,14 @@ class LandingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         SystemHelper.hideSystem(this)
-        setUpViewPager()
+
+        val backgrounds = listOf(
+            R.drawable.landing_bg_1,
+            R.drawable.landing_bg_2,
+            R.drawable.landing_bg_3
+        )
+        setUpViewPager(backgrounds)
+
         binding.getStartedBtn.setOnClickListener {
             val intent = Intent(this, AuthActivity::class.java)
             startActivity(intent)
@@ -53,17 +57,12 @@ class LandingActivity : AppCompatActivity() {
         binding.viewPager.unregisterOnPageChangeCallback(pageListener)
     }
 
-    private fun setUpViewPager(){
+    private fun setUpViewPager(backgrounds: List<Int> ){
         binding = ActivityLandingBinding.inflate(layoutInflater)
-        val bgs = listOf(
-            R.drawable.landing_bg_1,
-            R.drawable.landing_bg_2,
-            R.drawable.landing_bg_3
-        )
 
-        binding.viewPager.adapter = LandingAdapter(bgs)
+        binding.viewPager.adapter = LandingAdapter(backgrounds)
         val slidedot= binding.slideDot
-        val dotsimg = Array(bgs.size){
+        val dotsimg = Array(backgrounds.size){
             ImageView(this)
         }
 
@@ -96,7 +95,7 @@ class LandingActivity : AppCompatActivity() {
                     delay(3000)
                     withContext(Dispatchers.Main){
                         val nextBg = (binding.viewPager.currentItem + 1)
-                        binding.viewPager.setCurrentItem(nextBg % bgs.size, true)
+                        binding.viewPager.setCurrentItem(nextBg % backgrounds.size, true)
                     }
                 }
             }

@@ -1,6 +1,5 @@
 package com.wrxhard.ftravel.view.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.wrxhard.ftravel.R
 
-class LandingAdapter(val listBackground: List<Int>): RecyclerView.Adapter<LandingAdapter.BackgroundMyViewHolder>(){
+class LandingAdapter(private val listBackground: List<Int>): RecyclerView.Adapter<LandingAdapter.BackgroundMyViewHolder>(){
     inner class BackgroundMyViewHolder(val view: View): RecyclerView.ViewHolder(view){
         fun bind(Background: Int)
         {

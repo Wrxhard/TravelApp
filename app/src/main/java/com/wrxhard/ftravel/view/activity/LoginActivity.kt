@@ -10,7 +10,6 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityLoginBinding
 import com.wrxhard.ftravel.util.Event
 import com.wrxhard.ftravel.util.SystemHelper

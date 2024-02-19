@@ -4,21 +4,17 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
-import android.view.WindowManager
+import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
-import androidx.databinding.DataBindingUtil
-import androidx.navigation.NavController
-import androidx.navigation.NavGraph
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.tabs.TabLayoutMediator
 import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityMainBinding
+import com.wrxhard.ftravel.model.base_model.Category
 import com.wrxhard.ftravel.util.SystemHelper
+import com.wrxhard.ftravel.view.adapter.CategoryAdapter
+import com.wrxhard.ftravel.view.adapter.HomeVPAdapter
+import com.wrxhard.ftravel.view.adapter.LocationAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -31,43 +27,50 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         //hideSystemBar
         SystemHelper.hideSystem(this)
-        //Find and set Navigation controller
-        /*
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
-        val navController = navHostFragment?.navController
-        navController?.let {
-            binding.bottomNav.selectedItemId = R.id.home_nav_graph
-            //setup bottom nav
-            setupBottomNav(it, binding.bottomNav)
-        }*/
+
+        val categories = listOf(
+            Category(R.drawable.ic_lightbulb, "Suggest"),
+            Category(R.drawable.ic_location, "Place"),
+            Category(R.drawable.ic_calendar, "Schedule"),
+        )
+        setupCategoryList(categories)
+
+        val userLocations = listOf(
+            "Ho Chi Minh",
+            "Ha Noi",
+        )
+        setUpDropdown(userLocations)
+
+        setupTabLayout()
+
+        SystemHelper.blurView(this,binding.root,binding.blurView,10f)
+
         setContentView(binding.root)
+
     }
 
-
-    //Set up bottom navigation
-    //Deprecated
-    private fun setupBottomNav(navController: NavController, bottomNavigationView: BottomNavigationView)
-    {
-
-        bottomNavigationView.apply {
-            navController.let {
-                    navController ->
-                NavigationUI.setupWithNavController(this,navController)
-                setOnItemSelectedListener {
-                        item->
-                        NavigationUI.onNavDestinationSelected(item, navController)
-                    true
-                }
-                setOnItemReselectedListener {
-                    val selectedItemNavGraph=navController.graph.findNode(it.itemId) as NavGraph
-                    selectedItemNavGraph.let {
-                            menuGraph->
-                        navController.popBackStack(menuGraph.startDestinationId,false)
-                    }
-                }
-
-            }
+    private fun setUpDropdown(userLocations: List<String>){
+        binding.LocationDropdown.adapter = LocationAdapter(this, userLocations){
+            Toast.makeText(this,it,Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun setupCategoryList(categories: List<Category>)
+    {
+        binding.categoryList.adapter = CategoryAdapter(categories){
+                category->
+            Toast.makeText(this,category.name,Toast.LENGTH_SHORT).show()
+        }
+        binding.categoryList.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+    }
+
+    private fun setupTabLayout(){
+        binding.viewPager.adapter = HomeVPAdapter(this)
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            when (position) {
+                0 -> tab.text = "Location"
+                1 -> tab.text = "Food"
+            }
+        }.attach()
     }
 }

@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.wrxhard.ftravel.R
@@ -12,37 +11,45 @@ import com.wrxhard.ftravel.model.base_model.Food
 import com.wrxhard.ftravel.model.base_model.Location
 import com.wrxhard.ftravel.model.generic_model.Item
 
-class ItemAdapter(val listItem: List<Item<*>>, val onClick:(Item<*>)->Unit): RecyclerView.Adapter<ItemAdapter.ItemMyViewHolder>(){
+class ItemAdapter(private val listItem: List<Item<*>>, private val onClick:(Item<*>)->Unit): RecyclerView.Adapter<ItemAdapter.ItemMyViewHolder>(){
     inner class ItemMyViewHolder(val view: View): RecyclerView.ViewHolder(view){
-        fun bind(Item: Item<*>, onClick: (Item<*>) -> Unit)
+        fun bind(item: Item<*>, onClick: (Item<*>) -> Unit)
         {
-           when(Item.data){
+           when(item.data){
                is Food ->{
-                   val food=Item.data
-                   val desc = view.findViewById<TextView>(R.id.card_desc)
-                   val location = view.findViewById<TextView>(R.id.card_location)
-                   desc.text = food.name
-                   location.text = food.locations[0].address
+                   val food=item.data
+                   val name = view.findViewById<TextView>(R.id.food_name)
+                   name.text = food.name
+                   /*Glide
+                       .with(view)
+                       .load(food.image_url)
+                       .into(view.findViewById(R.id.card_img))*/
                }
                is Location -> {
-                   val location = Item.data
-                   val desc = view.findViewById<TextView>(R.id.card_desc)
-                   val address = view.findViewById<TextView>(R.id.card_location)
-                   desc.text = location.name
-                   address.text = location.address
+                   val location = item.data
+                   val name = view.findViewById<TextView>(R.id.location_name)
+                   name.text = location.name
+                   /*Glide
+                       .with(view)
+                       .load(location.image_url)
+                       .into(view.findViewById(R.id.card_img))*/
                }
                else -> {
                    Log.e("ItemAdapter", "Unknown Item Type")
                }
            }
-            view.setOnClickListener{onClick(Item)}
+            view.setOnClickListener{onClick(item)}
 
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemMyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val listItem=layoutInflater.inflate(R.layout.card,parent,false)
-        return ItemMyViewHolder(listItem)
+        val listItemView = if (listItem[0].data is Location ) {
+            layoutInflater.inflate(R.layout.location_card,parent,false)
+        } else {
+            layoutInflater.inflate(R.layout.food_card,parent,false)
+        }
+        return ItemMyViewHolder(listItemView)
     }
 
     override fun onBindViewHolder(holder: ItemMyViewHolder, position: Int) {

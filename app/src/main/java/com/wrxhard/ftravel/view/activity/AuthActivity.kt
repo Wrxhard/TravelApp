@@ -4,13 +4,8 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
-import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityAuthBinding
 import com.wrxhard.ftravel.util.SystemHelper
 import com.wrxhard.ftravel.view_model.activity.AuthActivityViewModel

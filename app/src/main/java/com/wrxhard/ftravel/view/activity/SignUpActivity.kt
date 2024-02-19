@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivitySignUpBinding
 import com.wrxhard.ftravel.util.SystemHelper
 import com.wrxhard.ftravel.view_model.activity.AuthActivityViewModel
