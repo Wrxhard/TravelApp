@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.wrxhard.ftravel.databinding.ActivityLoginBinding
 import com.wrxhard.ftravel.util.Event
-import com.wrxhard.ftravel.util.SystemHelper
+import com.wrxhard.ftravel.util.LayoutHelper
 import com.wrxhard.ftravel.view_model.activity.AuthActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        SystemHelper.hideSystem(this)
+        LayoutHelper.hideSystem(this)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         binding.nextButton.setOnClickListener {
             val username = binding.emailTxtfield.text.toString()

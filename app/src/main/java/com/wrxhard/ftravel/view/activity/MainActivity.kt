@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityMainBinding
 import com.wrxhard.ftravel.model.base_model.Category
-import com.wrxhard.ftravel.util.SystemHelper
+import com.wrxhard.ftravel.util.LayoutHelper
 import com.wrxhard.ftravel.view.adapter.CategoryAdapter
 import com.wrxhard.ftravel.view.adapter.HomeVPAdapter
 import com.wrxhard.ftravel.view.adapter.LocationAdapter
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         //bindingview
         binding = ActivityMainBinding.inflate(layoutInflater)
         //hideSystemBar
-        SystemHelper.hideSystem(this)
+        LayoutHelper.hideSystem(this)
 
         val categories = listOf(
             Category(R.drawable.ic_lightbulb, "Suggest"),
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         setupTabLayout()
 
-        SystemHelper.blurView(this,binding.root,binding.blurView,10f)
+        LayoutHelper.blurView(this,binding.root,binding.blurView,10f)
 
         setContentView(binding.root)
 

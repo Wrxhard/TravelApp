@@ -1,5 +1,6 @@
 package com.wrxhard.ftravel.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.wrxhard.ftravel.databinding.FragmentFoodBinding
 import com.wrxhard.ftravel.model.base_model.Food
 import com.wrxhard.ftravel.model.generic_model.Item
+import com.wrxhard.ftravel.view.activity.DetailActivity
 import com.wrxhard.ftravel.view.adapter.ItemAdapter
 
 class FoodFragment : Fragment() {
@@ -26,6 +28,8 @@ class FoodFragment : Fragment() {
             Item(Food("2", "Pizza", "https://www.google.com", "10000$", emptyList()))
         )
         binding.foodRecyclerView.adapter = ItemAdapter(foods){
+            val intent = Intent(this@FoodFragment.activity, DetailActivity::class.java)
+            startActivity(intent)
         }
         binding.foodRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         return binding.root

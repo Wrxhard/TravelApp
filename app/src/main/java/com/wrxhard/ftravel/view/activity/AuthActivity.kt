@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import com.wrxhard.ftravel.databinding.ActivityAuthBinding
-import com.wrxhard.ftravel.util.SystemHelper
+import com.wrxhard.ftravel.util.LayoutHelper
 import com.wrxhard.ftravel.view_model.activity.AuthActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +20,7 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //hideSystemBar
-        SystemHelper.hideSystem(this)
+        LayoutHelper.hideSystem(this)
         binding = ActivityAuthBinding.inflate(layoutInflater)
         binding.LoginBtn.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)

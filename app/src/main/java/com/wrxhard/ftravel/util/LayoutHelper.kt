@@ -1,9 +1,9 @@
 package com.wrxhard.ftravel.util
 
 import android.os.Build
-import android.renderscript.RenderScript
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
@@ -13,7 +13,13 @@ import eightbitlab.com.blurview.BlurView
 import eightbitlab.com.blurview.RenderEffectBlur
 import eightbitlab.com.blurview.RenderScriptBlur
 
-object SystemHelper {
+object LayoutHelper {
+    val slideParams = LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams.WRAP_CONTENT,
+        LinearLayout.LayoutParams.WRAP_CONTENT
+    ).apply {
+        setMargins(8, 0, 8, 0)
+    }
     @RequiresApi(Build.VERSION_CODES.R)
     fun hideSystem(activity: AppCompatActivity) {
         val window = activity.window
