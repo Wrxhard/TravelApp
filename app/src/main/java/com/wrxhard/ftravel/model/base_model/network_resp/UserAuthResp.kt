@@ -1,4 +1,4 @@
-package com.wrxhard.ftravel.model.base_model
+package com.wrxhard.ftravel.model.base_model.network_resp
 
 import com.google.gson.annotations.SerializedName
 

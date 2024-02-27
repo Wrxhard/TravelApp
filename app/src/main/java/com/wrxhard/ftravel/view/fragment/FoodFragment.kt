@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wrxhard.ftravel.databinding.FragmentFoodBinding
-import com.wrxhard.ftravel.model.base_model.Food
-import com.wrxhard.ftravel.model.generic_model.Item
+import com.wrxhard.ftravel.model.base_model.list_item.Food
+import com.wrxhard.ftravel.model.generic_model.list_item.Item
 import com.wrxhard.ftravel.view.activity.DetailActivity
 import com.wrxhard.ftravel.view.adapter.ItemAdapter
 

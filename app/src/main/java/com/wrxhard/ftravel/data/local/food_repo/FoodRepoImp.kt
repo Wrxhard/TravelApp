@@ -1,7 +1,7 @@
 package com.wrxhard.ftravel.data.local.food_repo
 
 import com.wrxhard.ftravel.data.local.dao.FoodDAO
-import com.wrxhard.ftravel.model.base_model.Food
+import com.wrxhard.ftravel.model.base_model.list_item.Food
 import kotlinx.coroutines.flow.Flow
 
 class FoodRepoImp(

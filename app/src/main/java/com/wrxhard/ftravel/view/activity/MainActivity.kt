@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityMainBinding
-import com.wrxhard.ftravel.model.base_model.Category
+import com.wrxhard.ftravel.model.base_model.list_item.Category
 import com.wrxhard.ftravel.util.LayoutHelper
 import com.wrxhard.ftravel.view.adapter.CategoryAdapter
 import com.wrxhard.ftravel.view.adapter.HomeVPAdapter

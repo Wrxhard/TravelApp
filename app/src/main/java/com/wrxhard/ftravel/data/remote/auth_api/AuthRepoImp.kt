@@ -1,7 +1,7 @@
 package com.wrxhard.ftravel.data.remote.auth_api
 
-import com.wrxhard.ftravel.model.base_model.UserAuthRequest
-import com.wrxhard.ftravel.model.base_model.UserAuthResp
+import com.wrxhard.ftravel.model.base_model.network_req.UserAuthRequest
+import com.wrxhard.ftravel.model.base_model.network_resp.UserAuthResp
 import com.wrxhard.ftravel.util.Resource
 import javax.inject.Inject
 

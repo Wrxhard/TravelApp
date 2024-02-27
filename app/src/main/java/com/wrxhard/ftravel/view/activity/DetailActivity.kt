@@ -8,10 +8,15 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityDetailBinding
+import com.wrxhard.ftravel.model.base_model.list_item.Location
+import com.wrxhard.ftravel.model.generic_model.list_item.Item
 import com.wrxhard.ftravel.util.LayoutHelper
+import com.wrxhard.ftravel.view.adapter.DetailAdapter
+import com.wrxhard.ftravel.view.adapter.ItemAdapter
 import com.wrxhard.ftravel.view.adapter.LandingAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -28,13 +33,29 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         LayoutHelper.hideSystem(this)
         binding = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         val backgrounds = listOf(
             R.drawable.landing_bg_1,
             R.drawable.landing_bg_2,
             R.drawable.landing_bg_3
         )
+        val recommendation = listOf(
+            Item(Location("1", "Pizza", "Pizza", "10000$")),
+            Item(Location("2", "Pizza", "dsada", "10000$"))
+        )
+        setupRemmendation(recommendation)
+        LayoutHelper.blurView(this,binding.root,binding.blurView,10f)
         setUpViewPager(backgrounds)
+        setContentView(binding.root)
+
+    }
+
+    private fun setupRemmendation(list: List<Item<*>>){
+        binding.recommendation.adapter = DetailAdapter(list){
+
+        }
+        binding.recommendation.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+
     }
     private fun setUpViewPager(backgrounds: List<Int> ){
 
@@ -48,7 +69,7 @@ class DetailActivity : AppCompatActivity() {
             it.setImageResource(R.drawable.detail_dot_selected)
             slidedot.addView(it, LayoutHelper.slideParams)
         }
-        dotsimg[0].setImageResource(R.drawable.dot_selected)
+        dotsimg[0].setImageResource(R.drawable.detail_dot_selected)
 
         pageListener = object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {

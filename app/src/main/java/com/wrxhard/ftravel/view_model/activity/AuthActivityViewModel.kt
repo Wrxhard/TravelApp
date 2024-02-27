@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wrxhard.ftravel.data.remote.RemoteRepo
-import com.wrxhard.ftravel.model.base_model.UserAuthRequest
-import com.wrxhard.ftravel.model.base_model.UserAuthResp
+import com.wrxhard.ftravel.model.base_model.network_req.UserAuthRequest
+import com.wrxhard.ftravel.model.base_model.network_resp.UserAuthResp
 import com.wrxhard.ftravel.util.DispatcherProvider
 import com.wrxhard.ftravel.util.Event
 import com.wrxhard.ftravel.util.Resource
@@ -37,6 +37,7 @@ class AuthActivityViewModel @Inject constructor(
                 is Resource.Success ->  {
                     if (res.data!=null)
                     {
+                        Log.i("login", "login: ${res.data}")
                         _login.value = Event.Success(res.data)
                     }
                     else
@@ -60,12 +61,10 @@ class AuthActivityViewModel @Inject constructor(
                 is Resource.Success ->  {
                     if (res.data!=null)
                     {
-                        Log.i("register", "register: ${res.data}")
                         _register.value = Event.Success(res.data)
                     }
                     else
                     {
-                        Log.i("register", "register: ${res.data}")
                         _register.value = Event.Failure("Can't register with this username and password")
                     }
                 }

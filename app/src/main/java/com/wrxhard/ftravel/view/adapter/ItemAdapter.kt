@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.wrxhard.ftravel.R
-import com.wrxhard.ftravel.model.base_model.Food
-import com.wrxhard.ftravel.model.base_model.Location
-import com.wrxhard.ftravel.model.generic_model.Item
+import com.wrxhard.ftravel.model.base_model.list_item.Food
+import com.wrxhard.ftravel.model.base_model.list_item.Location
+import com.wrxhard.ftravel.model.generic_model.list_item.Item
 
 class ItemAdapter(private val listItem: List<Item<*>>, private val onClick:(Item<*>)->Unit): RecyclerView.Adapter<ItemAdapter.ItemMyViewHolder>(){
     inner class ItemMyViewHolder(val view: View): RecyclerView.ViewHolder(view){
@@ -44,7 +44,7 @@ class ItemAdapter(private val listItem: List<Item<*>>, private val onClick:(Item
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemMyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val listItemView = if (listItem[0].data is Location ) {
+        val listItemView = if (listItem[0].data is Location) {
             layoutInflater.inflate(R.layout.location_card,parent,false)
         } else {
             layoutInflater.inflate(R.layout.food_card,parent,false)

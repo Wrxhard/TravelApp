@@ -1,4 +1,4 @@
-package com.wrxhard.ftravel.model.base_model
+package com.wrxhard.ftravel.model.base_model.list_item
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

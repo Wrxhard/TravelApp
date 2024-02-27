@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wrxhard.ftravel.databinding.FragmentLocationBinding
-import com.wrxhard.ftravel.model.base_model.Location
-import com.wrxhard.ftravel.model.generic_model.Item
+import com.wrxhard.ftravel.model.base_model.list_item.Location
+import com.wrxhard.ftravel.model.generic_model.list_item.Item
 import com.wrxhard.ftravel.view.activity.DetailActivity
 import com.wrxhard.ftravel.view.adapter.ItemAdapter
 

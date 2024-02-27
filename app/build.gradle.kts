@@ -119,17 +119,15 @@ dependencies {
     //Glide
     val glide_version="4.12.0"
     implementation("com.github.bumptech.glide:glide:$glide_version")
-
+    //Background Blur
     implementation("com.github.Dimezis:BlurView:version-2.0.3")
+    // Tensorflow Lite dependencies
+    implementation("org.tensorflow:tensorflow-lite-task-vision-play-services:0.4.2")
+    implementation("com.google.android.gms:play-services-tflite-gpu:16.2.0")
 
+    //Google Auth
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
 
-
-
-
-
-
-
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
