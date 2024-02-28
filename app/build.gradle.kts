@@ -49,6 +49,7 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        mlModelBinding = true
     }
 }
 
@@ -56,6 +57,9 @@ dependencies {
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
     //Room
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
@@ -121,9 +125,6 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:$glide_version")
     //Background Blur
     implementation("com.github.Dimezis:BlurView:version-2.0.3")
-    // Tensorflow Lite dependencies
-    implementation("org.tensorflow:tensorflow-lite-task-vision-play-services:0.4.2")
-    implementation("com.google.android.gms:play-services-tflite-gpu:16.2.0")
 
     //Google Auth
     implementation("com.google.android.gms:play-services-auth:21.0.0")
