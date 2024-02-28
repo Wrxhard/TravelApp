@@ -5,12 +5,14 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.media.ThumbnailUtils
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Window
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +25,8 @@ import com.wrxhard.ftravel.util.LayoutHelper
 import com.wrxhard.ftravel.view.adapter.CategoryAdapter
 import com.wrxhard.ftravel.view.adapter.HomeVPAdapter
 import com.wrxhard.ftravel.view.adapter.LocationAdapter
+import com.wrxhard.ftravel.view_model.activity.AuthActivityViewModel
+import com.wrxhard.ftravel.view_model.activity.MainDetailViewModel
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.model.Model
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -31,13 +35,28 @@ import java.nio.ByteOrder
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val mainDetailViewModel: MainDetailViewModel by viewModels()
+    private var uri: Uri? = null
+    private var image: Bitmap? = null
     private val camLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val data = result.data
-            var image = data?.extras?.get("data") as? Bitmap
-            val dimension = Math.min(image!!.width, image.height)
+            image = data?.extras?.get("data") as? Bitmap
+            val dimension = Math.min(image!!.width, image!!.height)
             image = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
-            image = Bitmap.createScaledBitmap(image, 299, 299, false)
+            image = Bitmap.createScaledBitmap(image!!, 299, 299, false)
+            classifyImage(imageSize = 299,image)
+        }
+    }
+    private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()){
+        if (it != null){
+            uri = it
+            try {
+                image = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
+            image = Bitmap.createScaledBitmap(image!!, 299, 299, false)
             classifyImage(imageSize = 299,image)
         }
     }
@@ -64,11 +83,14 @@ class MainActivity : AppCompatActivity() {
         setUpDropdown(userLocations)
 
         setupTabLayout()
+        binding.locationBtn.setOnClickListener {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            camLauncher.launch(intent)
+        }
 
         binding.searchIconCard.setOnClickListener {
             if (checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                camLauncher.launch(intent)
+                pickImage.launch("image/*")
             }
             else {
                 requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 101)
@@ -112,9 +134,9 @@ class MainActivity : AppCompatActivity() {
         for (i in 0 until imageSize) {
             for (j in 0 until imageSize) {
                 val `val` = intValues[pixel++] // RGB
-                byteBuffer.putFloat((`val` shr 16 and 0xFF) * (1f / 1))
-                byteBuffer.putFloat((`val` shr 8 and 0xFF) * (1f / 1))
-                byteBuffer.putFloat((`val` and 0xFF) * (1f / 1))
+                byteBuffer.putFloat((`val` shr 16 and 0xFF) * (1f / 299))
+                byteBuffer.putFloat((`val` shr 8 and 0xFF) * (1f / 299))
+                byteBuffer.putFloat((`val` and 0xFF) * (1f / 299))
             }
         }
 

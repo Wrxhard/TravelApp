@@ -116,11 +116,25 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/location_coordinate"
+                android:id="@+id/food_price"
+                android:visibility="visible"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginStart="@dimen/_18sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/review_layout"
+                android:textColor="#FF555B"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="@dimen/_20ssp"
+                android:textStyle="bold"
+                android:text="20.000 - 25.000 VND"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/location_coordinate"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_18sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/food_price"
                 android:textColor="@color/white"
                 android:fontFamily="@font/roboto_regular"
                 android:textSize="@dimen/_14ssp"
@@ -185,6 +199,7 @@
                 android:id="@+id/recommendation"
                 android:layout_marginStart="@dimen/_18sdp"
                 android:layout_marginTop="@dimen/_16sdp"
+                android:paddingBottom="@dimen/_50sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recommendation_title"
@@ -198,7 +213,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/search_bar"
         app:strokeColor="@color/transparent"
-        android:layout_marginBottom="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

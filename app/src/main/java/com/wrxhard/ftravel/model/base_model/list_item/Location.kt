@@ -3,6 +3,7 @@ package com.wrxhard.ftravel.model.base_model.list_item
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 @Entity(
     "Location_table"
@@ -17,4 +18,4 @@ data class Location(
     val name: String,
     @SerializedName("address")
     val address: String,
-)
+): Serializable

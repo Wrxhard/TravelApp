@@ -47,7 +47,7 @@ class DetailAdapter(private val listDetailItem: List<Item<*>>, private val onCli
         val listDetailItemView = if (listDetailItem[0].data is Location) {
             layoutInflater.inflate(R.layout.detail_location_card,parent,false)
         } else {
-            layoutInflater.inflate(R.layout.food_card,parent,false)
+            layoutInflater.inflate(R.layout.detail_food_card,parent,false)
         }
         return DetailItemMyViewHolder(listDetailItemView)
     }

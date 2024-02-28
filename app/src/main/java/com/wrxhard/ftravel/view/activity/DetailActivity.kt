@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityDetailBinding
+import com.wrxhard.ftravel.model.base_model.list_item.Food
 import com.wrxhard.ftravel.model.base_model.list_item.Location
 import com.wrxhard.ftravel.model.generic_model.list_item.Item
 import com.wrxhard.ftravel.util.LayoutHelper
@@ -38,11 +39,13 @@ class DetailActivity : AppCompatActivity() {
             R.drawable.landing_bg_2,
             R.drawable.landing_bg_3
         )
-        val recommendation = listOf(
-            Item(Location("1", "Pizza", "Pizza", "10000$")),
-            Item(Location("2", "Pizza", "dsada", "10000$"))
+        val foodList = listOf(
+            Item(Food("1", "Pizza", "Delicious pizza", "10$", emptyList())),
+            Item(Food("2", "Burger", "Tasty burger", "8$", emptyList())),
+            Item(Food("3", "Pasta", "Italian pasta", "12$", emptyList()))
         )
-        setupRemmendation(recommendation)
+        binding.foodPrice.visibility = ImageView.GONE
+        setupRemmendation(foodList)
         LayoutHelper.blurView(this,binding.root,binding.blurView,10f)
         setUpViewPager(backgrounds)
         setContentView(binding.root)
