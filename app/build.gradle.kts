@@ -125,6 +125,11 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:$glide_version")
     //Background Blur
     implementation("com.github.Dimezis:BlurView:version-2.0.3")
+    // Import tflite dependencies
+    implementation("org.tensorflow:tensorflow-lite:2.4.0")
+    // The GPU delegate library is optional. Depend on it as needed.
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
 
     //Google Auth
     implementation("com.google.android.gms:play-services-auth:21.0.0")
