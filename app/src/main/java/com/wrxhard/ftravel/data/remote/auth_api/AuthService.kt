@@ -7,10 +7,10 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AuthService {
-    @POST("/auth/login")
+    @POST("api/auth/login")
     suspend fun login(@Body request: UserAuthRequest): Response<UserAuthResp>
-    @POST("/auth/register")
+    @POST("api/auth/register")
     suspend fun register(@Body request: UserAuthRequest):Response<UserAuthResp>
-    @POST("/loginWithGoogle")
+    @POST("api/auth/login/google")
     suspend fun loginGoogle(@Body request: UserAuthRequest):Response<UserAuthResp>
 }

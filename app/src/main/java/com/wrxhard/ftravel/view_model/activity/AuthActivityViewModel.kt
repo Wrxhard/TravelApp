@@ -37,7 +37,6 @@ class AuthActivityViewModel @Inject constructor(
                 is Resource.Success ->  {
                     if (res.data!=null)
                     {
-                        Log.i("login", "login: ${res.data}")
                         _login.value = Event.Success(res.data)
                     }
                     else
@@ -69,6 +68,30 @@ class AuthActivityViewModel @Inject constructor(
                     }
                 }
                 is Resource.Error -> _register.value = Event.Failure("${res.message}")
+            }
+        }
+    }
+
+    fun loginWithGoogle(username: String, password: String){
+        //add username and password to request body
+        val requestBody = UserAuthRequest(username, password)
+
+        //start perform post request
+        viewModelScope.launch(dispatcher.io){
+            val res=remoteRepo.authRepo.loginGoogle(requestBody)
+            _login.value= Event.Loading
+            when(res){
+                is Resource.Success ->  {
+                    if (res.data!=null)
+                    {
+                        _login.value = Event.Success(res.data)
+                    }
+                    else
+                    {
+                        _login.value = Event.Failure("Can't login with this google account")
+                    }
+                }
+                is Resource.Error -> _login.value = Event.Failure("${res.message}")
             }
         }
     }

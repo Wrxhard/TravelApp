@@ -116,7 +116,7 @@ class AuthActivity : AppCompatActivity() {
                         Identity.getSignInClient(this).getSignInCredentialFromIntent(data)
                     val id = credential.id
                     val password=id.hashCode().toString()
-                    authViewModel.register(id, password)
+                    authViewModel.loginWithGoogle(id, password)
 
 
                 } catch (e: ApiException) {
