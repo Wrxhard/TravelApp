@@ -131,11 +131,14 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
     implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
     //Google Map
-    implementation("com.google.android.gms:play-services-maps:18.0.1")
-
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
 
     //Google Auth
     implementation("com.google.android.gms:play-services-auth:21.0.0")
+
+    //Google ML kit Translate
+    implementation("com.google.mlkit:translate:17.0.2")
+
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

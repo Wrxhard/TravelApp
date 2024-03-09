@@ -9,35 +9,56 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.speech.RecognizerIntent
 import android.view.Window
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.mlkit.common.model.DownloadConditions
+import com.google.mlkit.nl.translate.TranslateLanguage
+import com.google.mlkit.nl.translate.TranslatorOptions
 import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityMainBinding
 import com.wrxhard.ftravel.ml.MobileV2
 import com.wrxhard.ftravel.model.base_model.list_item.Category
+import com.wrxhard.ftravel.util.Event
+import com.wrxhard.ftravel.util.LangHelper
 import com.wrxhard.ftravel.util.LayoutHelper
 import com.wrxhard.ftravel.view.adapter.CategoryAdapter
 import com.wrxhard.ftravel.view.adapter.HomeVPAdapter
 import com.wrxhard.ftravel.view.adapter.LocationAdapter
-import com.wrxhard.ftravel.view_model.activity.AuthActivityViewModel
 import com.wrxhard.ftravel.view_model.activity.MainDetailViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.model.Model
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val mainDetailViewModel: MainDetailViewModel by viewModels()
     private var uri: Uri? = null
     private var image: Bitmap? = null
+    private val langModelOptions = TranslatorOptions.Builder()
+        .setSourceLanguage(TranslateLanguage.ENGLISH)
+        .setTargetLanguage(TranslateLanguage.VIETNAMESE)
+        .build()
+    private val langModelConditions = DownloadConditions.Builder()
+        .requireWifi()
+        .build()
+    var job: Job? = null
+
+
     private val camLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val data = result.data
@@ -48,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             classifyImage(imageSize = 299,image)
         }
     }
+
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()){
         if (it != null){
             uri = it
@@ -61,10 +83,52 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private val speechRecognizer = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+            val resultString = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            if (resultString != null) {
+                translateAndSpeech(resultString[0])
+            }
+        }
+    }
+
+    private fun translateAndSpeech(text: String) {
+        job?.cancel()
+        job = lifecycleScope.launch(Dispatchers.IO) {
+            LangHelper.initSpeechToText(this@MainActivity)
+            LangHelper.initTrans(
+                langModelOptions,langModelConditions
+            ){
+                when(it){
+                    is Event.Success -> {
+                        LangHelper.translate(text){ event ->
+                            when(event){
+                                is Event.Success -> {
+                                    LangHelper.convertTextToSpeech(event.result as String)
+                                }
+                                is Event.Failure -> {
+                                }
+                                else -> Unit
+                            }
+                        }
+                    }
+                    is Event.Failure -> {
+                    }
+                    else -> Unit
+                }
+            }
+        }
+    }
+
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
+        //RequestPermission
+        if(checkSelfPermission((android.Manifest.permission.CAMERA)) != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 101)
+        }
         //bindingview
         binding = ActivityMainBinding.inflate(layoutInflater)
         //hideSystemBar
@@ -80,12 +144,33 @@ class MainActivity : AppCompatActivity() {
         val userLocations = listOf(
             "Ho Chi Minh",
         )
+
         setUpDropdown(userLocations)
 
+        binding.micBtn.setOnClickListener {
+
+            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text")
+            try {
+                speechRecognizer.launch(intent)
+            } catch (e: Exception) {
+                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
         setupTabLayout()
+
         binding.locationBtn.setOnClickListener {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            camLauncher.launch(intent)
+            if(checkSelfPermission((android.Manifest.permission.CAMERA)) == PackageManager.PERMISSION_GRANTED){
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                camLauncher.launch(intent)
+            }
+            else{
+                requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 101)
+            }
         }
 
         binding.searchIconCard.setOnClickListener {
@@ -204,5 +289,11 @@ class MainActivity : AppCompatActivity() {
                 1 -> tab.text = "Food"
             }
         }.attach()
+    }
+    // Function to convert text to speech
+    override fun onDestroy() {
+        super.onDestroy()
+        LangHelper.closeTextToSpeech()
+        LangHelper.closeTrans()
     }
 }
