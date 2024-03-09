@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
@@ -13,7 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityLandingBinding
-import com.wrxhard.ftravel.util.SystemHelper
+import com.wrxhard.ftravel.util.LayoutHelper
 import com.wrxhard.ftravel.view.adapter.LandingAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -25,21 +24,18 @@ import kotlinx.coroutines.withContext
 class LandingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLandingBinding
     private lateinit var pageListener: ViewPager2.OnPageChangeCallback
-    private val params = LinearLayout.LayoutParams(
-        LinearLayout.LayoutParams.WRAP_CONTENT,
-        LinearLayout.LayoutParams.WRAP_CONTENT
-    ).apply {
-        setMargins(8, 0, 8, 0)
-    }
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        SystemHelper.hideSystem(this)
+
+        binding = ActivityLandingBinding.inflate(layoutInflater)
+
+        LayoutHelper.hideSystem(this)
 
         val backgrounds = listOf(
-            R.drawable.landing_bg_1,
-            R.drawable.landing_bg_2,
-            R.drawable.landing_bg_3
+            R.drawable.landing_bg_02,
+            R.drawable.landing_bg_01,
+            R.drawable.landing_bg_03
         )
         setUpViewPager(backgrounds)
 
@@ -47,7 +43,7 @@ class LandingActivity : AppCompatActivity() {
             val intent = Intent(this, AuthActivity::class.java)
             startActivity(intent)
         }
-        SystemHelper.blurView(this, binding.root, binding.blurView, 10f)
+        LayoutHelper.blurView(this, binding.root, binding.blurView, 10f)
         setContentView(binding.root)
     }
 
@@ -58,7 +54,6 @@ class LandingActivity : AppCompatActivity() {
     }
 
     private fun setUpViewPager(backgrounds: List<Int> ){
-        binding = ActivityLandingBinding.inflate(layoutInflater)
 
         binding.viewPager.adapter = LandingAdapter(backgrounds)
         val slidedot= binding.slideDot
@@ -68,7 +63,7 @@ class LandingActivity : AppCompatActivity() {
 
         dotsimg.forEach {
             it.setImageResource(R.drawable.dot_unselected)
-            slidedot.addView(it,params)
+            slidedot.addView(it,LayoutHelper.slideParams)
         }
         dotsimg[0].setImageResource(R.drawable.dot_selected)
 

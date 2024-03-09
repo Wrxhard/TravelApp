@@ -1,7 +1,7 @@
 package com.wrxhard.ftravel.data.local.location_repo
 
 import com.wrxhard.ftravel.data.local.dao.LocationDAO
-import com.wrxhard.ftravel.model.base_model.Location
+import com.wrxhard.ftravel.model.base_model.list_item.Location
 import kotlinx.coroutines.flow.Flow
 
 class LocationRepoImp(

@@ -7,11 +7,11 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import com.wrxhard.ftravel.R
-import com.wrxhard.ftravel.model.base_model.Category
+import com.wrxhard.ftravel.model.base_model.list_item.Category
 
 class CategoryAdapter(private val listCategory: List<Category>, private val onclick: (Category) -> Unit): RecyclerView.Adapter<CategoryAdapter.CategoryMyViewHolder>(){
     inner class CategoryMyViewHolder(val view: View): RecyclerView.ViewHolder(view){
-        fun bind(category: Category,onclick: (Category) -> Unit)
+        fun bind(category: Category, onclick: (Category) -> Unit)
         {
             val icon = view.findViewById<ImageView>(R.id.categoryIcon)
             icon.setImageResource(category.icon)

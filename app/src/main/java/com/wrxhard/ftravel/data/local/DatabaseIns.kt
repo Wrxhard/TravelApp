@@ -5,8 +5,8 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.wrxhard.ftravel.data.local.dao.FoodDAO
 import com.wrxhard.ftravel.data.local.dao.LocationDAO
-import com.wrxhard.ftravel.model.base_model.Food
-import com.wrxhard.ftravel.model.base_model.Location
+import com.wrxhard.ftravel.model.base_model.list_item.Food
+import com.wrxhard.ftravel.model.base_model.list_item.Location
 import com.wrxhard.ftravel.util.Converter
 
 @Database(

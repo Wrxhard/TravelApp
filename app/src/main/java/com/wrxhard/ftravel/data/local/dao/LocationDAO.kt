@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.wrxhard.ftravel.model.base_model.Location
+import com.wrxhard.ftravel.model.base_model.list_item.Location
 import kotlinx.coroutines.flow.Flow
 
 @Dao

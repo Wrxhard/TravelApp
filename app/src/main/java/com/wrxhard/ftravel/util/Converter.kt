@@ -1,7 +1,7 @@
 package com.wrxhard.ftravel.util
 
 import androidx.room.TypeConverter
-import com.wrxhard.ftravel.model.base_model.Location
+import com.wrxhard.ftravel.model.base_model.list_item.Location
 
 class Converter {
     @TypeConverter

@@ -49,6 +49,7 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        mlModelBinding = true
     }
 }
 
@@ -56,6 +57,9 @@ dependencies {
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
     //Room
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
@@ -119,17 +123,23 @@ dependencies {
     //Glide
     val glide_version="4.12.0"
     implementation("com.github.bumptech.glide:glide:$glide_version")
-
+    //Background Blur
     implementation("com.github.Dimezis:BlurView:version-2.0.3")
+    // Import tflite dependencies
+    implementation("org.tensorflow:tensorflow-lite:2.4.0")
+    // The GPU delegate library is optional. Depend on it as needed.
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
+    //Google Map
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+
+    //Google Auth
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
+
+    //Google ML kit Translate
+    implementation("com.google.mlkit:translate:17.0.2")
 
 
-
-
-
-
-
-
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
