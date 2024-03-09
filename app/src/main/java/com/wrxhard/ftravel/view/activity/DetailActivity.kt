@@ -1,5 +1,6 @@
 package com.wrxhard.ftravel.view.activity
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -45,6 +46,10 @@ class DetailActivity : AppCompatActivity() {
             Item(Food("3", "Pasta", "Italian pasta", "12$", emptyList()))
         )
         binding.foodPrice.visibility = ImageView.GONE
+        binding.locationBtn.setOnClickListener {
+            val intent = Intent(this, MapActivity::class.java)
+            startActivity(intent)
+        }
         setupRemmendation(foodList)
         LayoutHelper.blurView(this,binding.root,binding.blurView,10f)
         setUpViewPager(backgrounds)

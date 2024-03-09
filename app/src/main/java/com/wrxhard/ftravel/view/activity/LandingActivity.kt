@@ -33,9 +33,9 @@ class LandingActivity : AppCompatActivity() {
         LayoutHelper.hideSystem(this)
 
         val backgrounds = listOf(
-            R.drawable.landing_bg_1,
-            R.drawable.landing_bg_2,
-            R.drawable.landing_bg_3
+            R.drawable.landing_bg_02,
+            R.drawable.landing_bg_01,
+            R.drawable.landing_bg_03
         )
         setUpViewPager(backgrounds)
 

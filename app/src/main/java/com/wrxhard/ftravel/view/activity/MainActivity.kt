@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityMainBinding
-import com.wrxhard.ftravel.ml.TfLiteModel
+import com.wrxhard.ftravel.ml.MobileV2
 import com.wrxhard.ftravel.model.base_model.list_item.Category
 import com.wrxhard.ftravel.util.LayoutHelper
 import com.wrxhard.ftravel.view.adapter.CategoryAdapter
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun classifyImage(imageSize: Int,image: Bitmap?) {
-        val model = TfLiteModel.newInstance(this@MainActivity)
+        val model = MobileV2.newInstance(this@MainActivity)
 
         // Creates inputs for reference.
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, imageSize, imageSize, 3),DataType.FLOAT32)
@@ -157,12 +157,39 @@ class MainActivity : AppCompatActivity() {
             }
         }
         val classes = arrayOf(
-            "BaoTangLichSu", "BaoTangThanhPho", "BenNhaRong","Bitexco",
-            "BuuDienThanhPho","CauMong","ChoBenThanh","ChuaBuuLong",
-            "DinhDocLap","Landmark81","NhaHatThanhPho","NhaThoDucBa",
-            "NhaThoTanDinh","PhoDiBoBuiVien","ThaoCamVien"
+            "Bao_Tang_Chung_Tich_Chien_Tranh",
+            "Bao_Tang_Lich_Su",
+            "Bao_Tang_My_Thuat",
+            "Bao_Tang_Thanh_Pho",
+            "Ben_Nha_Rong",
+            "Bitexco",
+            "Bui_Vien_Tay",
+            "Buu_Dien_TPHCM",
+            "Cau_Mong",
+            "Cho_Ben_Thanh",
+            "Cho_Binh_Tay",
+            "Chua_Ba_Thien_Hau",
+            "Chua_Buu_Long",
+            "Chua_Ngoc_Hoang",
+            "Chua_Phap_Hoa",
+            "Chua_Vinh_Nghiem",
+            "Cot_Co_Thu_Ngu",
+            "Dinh_Doc_Lap",
+            "Ho_Con_Rua",
+            "Landmark_81",
+            "Nha_Hat_Thanh_Pho",
+            "Nha_Tho_Duc_Ba",
+            "Nha_Tho_Giao_Xu_Tan_Dinh",
+            "Thao_Cam_Vien",
+            "UBND_TPHCM"
         )
-        Toast.makeText(this, "Predicted: " + classes[maxPos], Toast.LENGTH_SHORT).show()
+        if (maxConfidence<0.35)
+        {
+            Toast.makeText(this, "Can't recognize", Toast.LENGTH_SHORT).show()
+        }
+        else{
+            Toast.makeText(this, "Predicted: " + classes[maxPos] + " $maxConfidence%", Toast.LENGTH_SHORT).show()
+        }
 
         // Releases model resources if no longer used.
         model.close()

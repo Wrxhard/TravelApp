@@ -22,7 +22,7 @@
                 android:layout_width="@dimen/_200sdp"
                 android:layout_height="@dimen/_160sdp"
                 android:scaleType="fitXY"
-                android:src="@drawable/holder3"
+                android:src="@drawable/istockphoto"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

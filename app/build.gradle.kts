@@ -130,6 +130,9 @@ dependencies {
     // The GPU delegate library is optional. Depend on it as needed.
     implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
     implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
+    //Google Map
+    implementation("com.google.android.gms:play-services-maps:18.0.1")
+
 
     //Google Auth
     implementation("com.google.android.gms:play-services-auth:21.0.0")

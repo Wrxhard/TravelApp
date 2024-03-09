@@ -62,7 +62,9 @@ class AuthActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.goolgeBtn.setOnClickListener {
-            signInWithGoogle()
+            //signInWithGoogle()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
         watchState()
         setContentView(binding.root)

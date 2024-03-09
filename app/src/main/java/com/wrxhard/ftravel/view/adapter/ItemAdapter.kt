@@ -13,8 +13,13 @@ import com.wrxhard.ftravel.model.generic_model.list_item.Item
 
 class ItemAdapter(private val listItem: List<Item<*>>, private val onClick:(Item<*>)->Unit): RecyclerView.Adapter<ItemAdapter.ItemMyViewHolder>(){
     inner class ItemMyViewHolder(val view: View): RecyclerView.ViewHolder(view){
-        fun bind(item: Item<*>, onClick: (Item<*>) -> Unit)
+        fun bind(item: Item<*>, onClick: (Item<*>) -> Unit,  position: Int)
         {
+            if (position == listItem.size - 1) {
+                val params = view.layoutParams as ViewGroup.MarginLayoutParams
+                params.bottomMargin = 280
+                view.layoutParams = params
+            }
            when(item.data){
                is Food ->{
                    val food=item.data
@@ -54,7 +59,7 @@ class ItemAdapter(private val listItem: List<Item<*>>, private val onClick:(Item
 
     override fun onBindViewHolder(holder: ItemMyViewHolder, position: Int) {
         val item=listItem[position]
-        holder.bind(item,onClick)
+        holder.bind(item,onClick, position)
 
     }
 

@@ -187,6 +187,7 @@
         app:cornerRadius="@dimen/_6sdp"
         android:layout_width="0dp"
         android:layout_height="@dimen/_40sdp"
+        android:backgroundTint="#FF555B"
         android:text="Next"
         android:textSize="@dimen/_13ssp"
         android:fontFamily="@font/mulish_semi_bold"
