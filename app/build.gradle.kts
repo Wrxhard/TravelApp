@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id ("com.google.gms.google-services")
 
 }
 
@@ -60,6 +61,11 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
     implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
     implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
+    implementation("com.google.android.gms:play-services-location:18.0.0")
+    implementation("com.google.android.gms:play-services-base:18.3.0")
+    implementation("com.google.maps:google-maps-services:2.1.2")
+    implementation("com.google.android.gms:play-services-maps:17.0.1")
+
     //Room
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")

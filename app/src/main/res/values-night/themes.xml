@@ -4,4 +4,7 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+    <color name="main_bg">#1D2026</color>
+    <color name="main_input">#2D303A</color>
+    <color name="text_color">#fff</color>
 </resources>

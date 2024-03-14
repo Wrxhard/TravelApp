@@ -4,5 +4,12 @@
     <item name="android:navigationBarColor">@android:color/transparent</item>
     <item name="android:statusBarColor">@android:color/transparent</item>
     <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+
+
+
   </style>
+
+  <color name="main_bg">#FFFFFF</color>
+  <color name="main_input">#1A2D303A</color>
+  <color name="text_color">#000</color>
 </resources>

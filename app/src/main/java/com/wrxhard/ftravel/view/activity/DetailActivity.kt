@@ -2,10 +2,10 @@ package com.wrxhard.ftravel.view.activity
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -14,11 +14,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.wrxhard.ftravel.R
 import com.wrxhard.ftravel.databinding.ActivityDetailBinding
 import com.wrxhard.ftravel.model.base_model.list_item.Food
-import com.wrxhard.ftravel.model.base_model.list_item.Location
 import com.wrxhard.ftravel.model.generic_model.list_item.Item
 import com.wrxhard.ftravel.util.LayoutHelper
 import com.wrxhard.ftravel.view.adapter.DetailAdapter
-import com.wrxhard.ftravel.view.adapter.ItemAdapter
 import com.wrxhard.ftravel.view.adapter.LandingAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -50,8 +48,15 @@ class DetailActivity : AppCompatActivity() {
             val intent = Intent(this, MapActivity::class.java)
             startActivity(intent)
         }
+
+        /// direction to location
+        binding.btnDirection.setOnClickListener {
+            val intent = Intent(this, MapDirectionActivity::class.java)
+            startActivity(intent)
+        }
+
         setupRemmendation(foodList)
-        LayoutHelper.blurView(this,binding.root,binding.blurView,10f)
+        LayoutHelper.blurView(this,binding.root,binding.btnDirection,10f)
         setUpViewPager(backgrounds)
         setContentView(binding.root)
 
