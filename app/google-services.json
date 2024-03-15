@@ -1,0 +1,30 @@
+{
+    "project_info": {
+        "project_number": "1073231743652",
+        "firebase_url": "https://mapdemo2-4cb13-default-rtdb.firebaseio.com",
+        "project_id": "mapdemo2-4cb13",
+        "storage_bucket": "mapdemo2-4cb13.appspot.com"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:1073231743652:android:05b5539f27a1021561b431",
+                "android_client_info": {
+                    "package_name": "com.wrxhard.ftravel"
+                }
+            },
+            "oauth_client": [],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyBioJyVHy-Jrq-myNy5cZ2EP1Oi8u_V4kg"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": []
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}
